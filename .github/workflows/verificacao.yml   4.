@@ -1,0 +1,20 @@
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar README
+        run: |
+          if [ ! -f README.md ]; then
+            echo "ERRO: README.md nao encontrado!"
+            exit 1
+          fi
+          echo "README.md encontrado com sucesso!"
+
+      - name: Registrar RA e SHA
+        run: |
+          echo "RA: 2026109081" >> "$GITHUB_STEP_SUMMARY"
+          echo "SHA do commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
